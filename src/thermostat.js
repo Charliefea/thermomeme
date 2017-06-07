@@ -3,17 +3,29 @@
 function Thermostat() {
   this.temperature = 20;
   this.MINIMUM_TEMPERATURE = 10;
+  this.MAXIMUM_TEMPERATURE = 32;
+  this.powersaving = false;
 
   Thermostat.prototype.getCurrentTemperature = function() {
     return this.temperature;
   };
 
-  Thermostat.prototype.up = function() {
-    this.temperature += 1;
-  };
-
   Thermostat.prototype.isAboveMinimumTemperature = function() {
     return this.temperature > this.MINIMUM_TEMPERATURE;
+  };
+
+  Thermostat.prototype.isBelowMaximumTemperature = function() {
+    return this.temperature < this.MAXIMUM_TEMPERATURE;
+  };
+
+  Thermostat.prototype.up = function() {
+    if(this.isBelowMaximumTemperature()) {
+      this.temperature += 1;
+      return this;
+    } else {
+      this.temperature = 32;
+      return this;
+    }
   };
 
   Thermostat.prototype.down = function() {
