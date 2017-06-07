@@ -18,12 +18,23 @@ function Thermostat() {
     return this.temperature < this.MAXIMUM_TEMPERATURE;
   };
 
+  Thermostat.prototype.turnOnPowersaving = function() {
+    this.MAXIMUM_TEMPERATURE = 25;
+    return this.powersaving = true;
+  };
+
+  
+
+  Thermostat.prototype.isPowersavingOn = function() {
+    return this.powersaving;
+  };
+
   Thermostat.prototype.up = function() {
     if(this.isBelowMaximumTemperature()) {
       this.temperature += 1;
       return this;
     } else {
-      this.temperature = 32;
+      this.temperature = this.MAXIMUM_TEMPERATURE;
       return this;
     }
   };
