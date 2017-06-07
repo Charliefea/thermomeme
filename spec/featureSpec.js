@@ -28,8 +28,6 @@ describe('Thermostat features', function() {
       expect(thermostat.getCurrentTemperature()).toEqual(10);
     });
 
-//     If power saving mode is on, the maximum temperature is 25 degrees
-
     it('Maximum temperature is 32 (when power saving is off)', function() {
       thermostat.turnOffPowersaving();
       MAXIMUM_TEMPERATURE = thermostat.MAXIMUM_TEMPERATURE;
@@ -54,6 +52,23 @@ describe('Thermostat features', function() {
 
     it('powersaving is on by default', function() {
       expect(thermostat.powersaving).toBe(true);
+    });
+
+    // You can ask about the thermostat's current energy usage: < 18 is low-usage, < 25 is medium-usage, anything else is high-usage.
+
+    describe('Energy usage', function () {
+
+      it('should display energy usage of thermostat', function () {
+        expect(thermostat.energyUsage()).toEqual('medium-usage');
+        for(var i = 0; i < 5; i++) {
+          thermostat.down();
+        }
+        expect(thermostat.energyUsage()).toEqual('low-usage');
+        for(var x = 0; x < 11; x++) {
+          thermostat.up();
+        }
+        expect(thermostat.energyUsage()).toEqual('high-usage');
+      });
     });
   });
 });
