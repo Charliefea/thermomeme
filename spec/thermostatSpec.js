@@ -3,7 +3,7 @@ describe('thermostat', function() {
   beforeEach(function () {
     thermostat = new Thermostat();
   });
-  describe('has default temperature', function() {
-    expect(thermostat.temperature()).toEqual(20);
+  it('has default temperature', function() {
+    expect(thermostat.temperature).toEqual(20);
   });
 });
