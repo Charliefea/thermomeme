@@ -8,21 +8,21 @@ function Thermostat() {
     return this.temperature;
   };
 
-  Thermostat.prototype.increaseTemperatureBy = function(increaseBy) {
-    return this.temperature + increaseBy;
-  };
+  // Thermostat.prototype.increaseTemperatureBy = function(increaseBy) {
+  //   return this.temperature + increaseBy;
+  // };
 
   Thermostat.prototype.up = function() {
     return this.temperature += 1;
   };
 
-  Thermostat.prototype.isMinumumTemperature = function() {
+  Thermostat.prototype.isMinimumTemperature = function() {
     return this.temperature === this.MINIMUM_TEMPERATURE;
   };
 
   Thermostat.prototype.down = function() {
-    if(this.temperature > 10) {
-      return this.temperature -= 1;
+    if(thermostat.isMinimumTemperature) {
+      return this.temperature;
     } else {
       this.temperature = 10;
     }
