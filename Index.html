@@ -22,6 +22,10 @@ div {color: white;}
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script>
   $( document ).ready(function() {
+
+
+
+
     var thermostat =  new Thermostat
       $( "#temperature" ).text(thermostat.getCurrentTemperature());
       $( "#psm" ).text(thermostat.powersaving);
@@ -60,11 +64,26 @@ div {color: white;}
           $('body').css('background-image', 'url(https://i.imgflip.com/oft6l.jpg)')
         }
       };
+      $('#current-city').change(function(){
+        var city = $('#current-city').val();
+        $.get('http://api.openweathermap.org/data/2.5/weather?q=' + city+ '&APPID=dc4e696a6ce59ca11dc2fcc23e176fb2&units=metric', function(data) {
+          $('#current-temperature').text(data.main.temp);
+        })
+      })
   });
   </script>
 <center>
   <h1> THERMOMEME</h1>
-  <h1><div id='temperature'>TEMPERATURE</div></h1>
+  <h1>What temperature should it be?<div id='temperature'>TEMPERATURE</div></h1>
+  <section>
+  <h1>Current Temperature<div id='current-temperature'></div></h1>
+  <select id="current-city">
+    <option value='london'>London</option>
+    <option value='newyork'>New York</option>
+    <option value='paris'>Paris</option>
+    <option value='tokyo'>Toyko</option>
+  </select>
+  </section>
   <br>
   <button name='up' type='submit' value='up' id='up' class='btn btn-danger'>UP</button>
   <button name='down' type='submit' value='down' id='down' class='btn btn-primary'>DOWN</button>
