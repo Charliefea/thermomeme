@@ -3,13 +3,16 @@
 <head>
   <meta charset="utf-8">
 
-  <title>THERMOSTAT</title>
+  <title>THERMOMEME</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
   <script src="src/thermostat.js"></script>
 <style>
-body {background-color: darkred;}
+body {background-color: black;
+      background-image: url("https://cdn.meme.am/cache/instances/folder374/65270374.jpg");
+      background-repeat: no-repeat;
+      background-position: center;}
 h1   {color: blue;}
 div {color: white;}
 </style>
@@ -21,7 +24,6 @@ div {color: white;}
   $( document ).ready(function() {
     var thermostat =  new Thermostat
       $( "#temperature" ).text(thermostat.getCurrentTemperature());
-      $( "#usage" ).text(thermostat.energyUsage());
       $( "#psm" ).text(thermostat.powersaving);
 
       $("#up").click(function(){
@@ -46,20 +48,63 @@ div {color: white;}
 
       function updateTemperature() {
         $( "#temperature").text(thermostat.getCurrentTemperature());
+        if(thermostat.energyUsage() === 'low-usage') {
+          $('body').css('background-color', 'green')
+          $('body').css('background-image', 'url(https://i.imgflip.com/j9nia.jpg)')
+
+        } else if (thermostat.energyUsage() === 'medium-usage') {
+          $('body').css('background-color', 'black')
+          $('body').css('background-image', 'url(./mrt.hermostat.jpg)')
+        } else {
+          $('body').css('background-color', 'darkred')
+          $('body').css('background-image', 'url(https://i.imgflip.com/oft6l.jpg)')
+        }
       };
   });
   </script>
 <center>
-  <h1> THERMOSTAT</h1>
-  <div id='temperature'>TEMPERATURE</div>
-  <br>
-  <div id='usage'>ENERGY USAGE</div>
+  <h1> THERMOMEME</h1>
+  <h1><div id='temperature'>TEMPERATURE</div></h1>
   <br>
   <button name='up' type='submit' value='up' id='up' class='btn btn-danger'>UP</button>
   <button name='down' type='submit' value='down' id='down' class='btn btn-primary'>DOWN</button>
   <button name='powersaving' type='submit' value='powersaving' id='powersaving' class='btn btn-success'>POWERSAVING</button>
   <button name='reset' type='submit' value='reset' id='reset'class='btn btn-primary' >RESET</button>
   <div id='psm'>PSM</div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br><br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br><br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 </center>
 </body>
 </html>
