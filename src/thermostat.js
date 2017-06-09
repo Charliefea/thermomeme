@@ -9,6 +9,9 @@ function Thermostat() {
   Thermostat.prototype.getCurrentTemperature = function() {
     return this.temperature;
   };
+  Thermostat.prototype.firstTemperature = function(temp) {
+    this.temperature = temp;
+  };
 
   Thermostat.prototype.isAboveMinimumTemperature = function() {
     return this.temperature > this.MINIMUM_TEMPERATURE;

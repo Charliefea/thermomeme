@@ -24,6 +24,19 @@ div {color: white;}
   $( document ).ready(function() {
 
     var thermostat =  new Thermostat
+    $.get("http://localhost:4567/temperature", function(data) {
+      var apiTemp = Number(data)
+      $('#temperature').text(apiTemp);
+      thermostat.firstTemperature(apiTemp);
+      if(thermostat.energyUsage() === 'low-usage') {
+        $('body').css('background-color', 'green')
+      } else if (thermostat.energyUsage() === 'medium-usage') {
+        $('body').css('background-color', 'black')
+      } else {
+        $('body').css('background-color', 'darkred')
+      }
+
+    })
       $( "#temperature" ).text(thermostat.getCurrentTemperature());
       $( "#psm" ).text(thermostat.powersaving);
 
@@ -49,6 +62,8 @@ div {color: white;}
 
       function updateTemperature() {
         $( "#temperature").text(thermostat.getCurrentTemperature());
+        console.log(thermostat.temperature)
+        $.post( "http://localhost:4567/temperature", { temperature: thermostat.temperature} );
         if(thermostat.energyUsage() === 'low-usage') {
           $('body').css('background-color', 'green')
           $('body').css('background-image', 'url(https://i.imgflip.com/j9nia.jpg)')
